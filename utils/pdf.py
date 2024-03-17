@@ -8,7 +8,7 @@ def load_pdf(path):
 
 def chunker(document):
     text_spliitter = RecursiveCharacterTextSplitter(
-        chunk_size=1024,  # bytes
+        chunk_size=512,  # bytes
         chunk_overlap =  30,
         len_function = len,
         is_separator_regex=False,
