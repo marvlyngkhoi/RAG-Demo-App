@@ -17,4 +17,7 @@ def ask_llm(question,context):
         })
 
     return ans[0]['generated_text'].split(question)[1]
+
+
+      
     

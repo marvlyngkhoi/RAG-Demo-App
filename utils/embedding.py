@@ -1,6 +1,6 @@
 import requests
 import numpy as np
-
+import streamlit as st
 
 API_URL = "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2"
 headers = {"Authorization": "Bearer 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"}
@@ -18,6 +18,7 @@ def get_score(sentences,words):
 
 	        },
         })
+    return score_results
 
 def get_top_k(sentences,score,k):
     
@@ -27,5 +28,10 @@ def get_top_k(sentences,score,k):
         sentences+=sentences[i]
     
     return top_K_sentences
-    
 
+@st.cache_data
+def get_sentences(sentences,words,k=5):
+    score = get_score(sentences,words)
+
+    return  get_top_k(sentences,score,k)
+     
