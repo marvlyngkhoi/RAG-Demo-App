@@ -18,6 +18,7 @@ with st.sidebar:
             file_name = uploaded_file.name
     
         sentences = pdf_parser(temp_file)
+    
 
     
 keywords = None
@@ -25,12 +26,12 @@ top_k_sentences=None
 with st.container():
     keywords = st.text_input('Keywords')
     if keywords is not None and sentences is not None:
-        st.write(keywords)
         top_k_sentences = get_sentences(sentences,keywords,k=5)
         st.write(top_k_sentences)
 
-prompt = st.chat_input('Say something')
+prompt = st.chat_input('Ask me  something')
 
 if prompt:
     with st.chat_message('Bot'):
-        st.write(ask_llm(prompt,top_k_sentences))
+        #st.write(ask_llm(prompt,top_k_sentences))
+        st.write(grok_llm(top_k_sentences,prompt))

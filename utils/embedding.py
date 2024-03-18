@@ -13,7 +13,7 @@ def get_score(sentences,words):
 	
     score_results = query_similarity({
 	    "inputs": {
-		    "source_sentence": words,
+		    "source_sentence": words.lower(),
 		    "sentences":sentences
 
 	        },
@@ -25,7 +25,7 @@ def get_top_k(sentences,score,k):
     top_indices = np.argsort(score)[::-1][:k]
     top_K_sentences = ''
     for i in top_indices:
-        sentences+=sentences[i]
+        sentences+=sentences[i].lower()
     
     return top_K_sentences
 
