@@ -18,8 +18,9 @@ import os
 #             file_name = uploaded_file.name
     
 #         sentences = pdf_parser(temp_file)
-    
-sentences = st.session_state['docs']
+sentences = []
+if 'docs' in st.session_state:
+    sentences = st.session_state['docs']
 
 
 page = None
