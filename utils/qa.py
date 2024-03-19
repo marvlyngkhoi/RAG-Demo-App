@@ -44,5 +44,24 @@ def grok_llm(context,question):
 
     return chat_completion.choices[0].message.content
 
+def grok_llm_qa(context,question):
+    
+    chat_completion = client.chat.completions.create(
+    messages=[
+         {
+            "role": "system",
+            "content": f"you are a helpful assistant that generate  questions and answer pairs based on the context {context}"
+        },
+        {
+            "role": "user",
+            "content":question,
+        }
+    ],
+    model="mixtral-8x7b-32768", 
+    )
+
+    return chat_completion.choices[0].message.content
+
+
       
     

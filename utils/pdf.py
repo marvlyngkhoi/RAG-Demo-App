@@ -36,7 +36,7 @@ def text_extractor(reader):
     
     return page_text
 
-@st.cache_data
+
 def pdf_parser(path):
     pdf = load_pdf(path)
     # chunks = chunker(pdf)
