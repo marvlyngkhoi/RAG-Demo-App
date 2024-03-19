@@ -1,11 +1,14 @@
-import pypdf
+from pypdf import PdfReader
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import streamlit as st
 
 def load_pdf(path):
-    loader = PyPDFLoader(path)
-    return loader.load()
+    #loader = PyPDFLoader(path)
+    #return loader.load()
+
+    reader = PdfReader(path)
+    return reader
 
 def chunker(document):
     text_spliitter = RecursiveCharacterTextSplitter(
@@ -26,9 +29,18 @@ def sentence_extractor(chunks):
     
     return sentences
 
+def text_extractor(reader):
+    page_text = []
+    for page in reader.pages:
+        page_text.append(page.extract_text())
+    
+    return page_text
+
 @st.cache_data
 def pdf_parser(path):
     pdf = load_pdf(path)
-    chunks = chunker(pdf)
+    # chunks = chunker(pdf)
     
-    return sentence_extractor(chunks)
+    # return sentence_extractor(chunks)
+
+    return text_extractor(pdf)

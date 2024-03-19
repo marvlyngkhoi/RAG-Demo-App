@@ -21,17 +21,20 @@ with st.sidebar:
     
 
     
-keywords = None
-top_k_sentences=None
+page = None
 with st.container():
-    keywords = st.text_input('Keywords')
-    if keywords is not None and sentences is not None:
-        top_k_sentences = get_sentences(sentences,keywords,k=5)
-        st.write(top_k_sentences)
+    option = st.selectbox(
+    'How would you like to be contacted?',
+    [ i for i in range(len(sentences))] )
+
+if option is not None:
+    st.write(sentences[option])
+    page = sentences[option]
+
 
 prompt = st.chat_input('Ask me  something')
 
 if prompt:
     with st.chat_message('Bot'):
         #st.write(ask_llm(prompt,top_k_sentences))
-        st.write(grok_llm(top_k_sentences,prompt))
+        st.write(grok_llm(page,prompt))
