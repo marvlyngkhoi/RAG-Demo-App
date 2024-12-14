@@ -8,7 +8,7 @@ headers = {"Authorization": "Bearer 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"}
 
 
 client = Groq(
-    api_key="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",
+    api_key="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",
 )
 
 def query(payload):
